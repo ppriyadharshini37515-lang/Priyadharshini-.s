@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Untitled</title>
+  
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Refrigerators - Best Prices in India</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f8fafc;
+            --white: #ffffff;
+            --border-color: #e5e7eb;
+            --success: #10b981;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            margin: 2rem 0;
+            color: white;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .filters {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .filter-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-item label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        select, input[type="range"] {
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus, input[type="range"]:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .price-range {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .price-display {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            position: relative;
+            height: 250px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--success);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-color);
+        }
+
+        .product-brand {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-features li {
+            padding: 0.25rem 0;
+            color: #6b7280;
+        }
+
+        .product-features li:before {
+            content: "✓";
+            color: var(--success);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .product-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #9ca3af;
+            font-size: 1rem;
+        }
+
+        .discount {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .buy-button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s ease;
+        }
+
+        .buy-button:hover {
+            background: var(--secondary-color);
+        }
+
+        .no-products {
+            text-align: center;
+            padding: 3rem;
+            background: var(--white);
+            border-radius: 15px;
+            grid-column: 1 / -1;
+        }
+
+        footer {
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-size: 1.2rem;
+            color: var(--text-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">❄️ CoolFridge</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="hero">
+            <h1>Premium Refrigerators</h1>
+            <p>Discover the perfect refrigerator for your home with the best prices in India</p>
+        </div>
+
+        <div class="filters">
+            <div class="filter-group">
+                <div class="filter-item">
+                    <label for="brand-filter">Brand</label>
+                    <select id="brand-filter">
+                        <option value="all">All Brands</option>
+                        <option value="samsung">Samsung</option>
+                        <option value="lg">LG</option>
+                        <option value="whirlpool">Whirlpool</option>
+                        <option value="godrej">Godrej</option>
+                        <option value="haier">Haier</option>
+                    </select>
+                </div>
+                
+                <div class="filter-item">
+                    <label for="type-filter">Type</label>
+                    <select id="type-filter">
+                        <option value="all">All Types</option>
+                        <option value="single">Single Door</option>
+                        <option value="double">Double Door</option>
+                        <option value="side">Side-by-Side</option>
+                        <option value="french">French Door</option>
+                    </select>
+                </div>
+                
+                <div class="filter-item">
+                    <label for="capacity-filter">Capacity (Liters)</label>
+                    <select id="capacity-filter">
+                        <option value="all">All Capacities</option>
+                        <option value="150">150-200L</option>
+                        <option value="250">250-300L</option>
+                        <option value="350">350-400L</option>
+                        <option value="450">450L+</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="filter-item">
+                <label for="price-range">Price Range: ₹<span id="price-display">50,000</span></label>
+                <div class="price-range">
+                    <span>₹10,000</span>
+                    <input type="range" id="price-range" min="10000" max="200000" step="10000" value="50000">
+                    <span>₹2,00,000</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="products-grid" id="products-container">
+            <div class="loading">Loading products...</div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 CoolFridge. All rights reserved. Best refrigerator prices in India.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Sample fridge data
+        const fridgeData = [
+            {
+                id: 1,
+                name: "Samsung FrostFree 265L",
+                brand: "samsung",
+                type: "double",
+                capacity: 265,
+                price: 28990,
+                originalPrice: 32990,
+                features: ["Frost Free", "Digital Inverter", "Twin Cooling Plus", "5 Year Warranty"],
+                imageAlt: "Samsung stainless steel double door refrigerator with digital display and spacious interior"
+            },
+            {
+                id: 2,
+                name: "LG Smart Inverter 260L",
+                brand: "lg",
+                type: "double",
+                capacity: 260,
+                price: 27490,
+                originalPrice: 30990,
+                features: ["Smart Inverter", "Moist Balance", "Door Cooling+", "10 Year Compressor Warranty"],
+                imageAlt: "LG silver double door refrigerator with sleek design and LED lighting"
+            },
+            {
+                id: 3,
+                name: "Whirlpool Intellifresh 240L",
+                brand: "whirlpool",
+                type: "single",
+                capacity: 240,
+                price: 21990,
+                originalPrice: 24990,
+                features: ["6th Sense Technology", "Intellifresh", "Adaptive Intelligence", "Stabilizer Free"],
+                imageAlt: "Whirlpool white single door refrigerator with modern control panel"
+            },
+            {
+                id: 4,
+                name: "Godrej Eon 290L",
+                brand: "godrej",
+                type: "double",
+                capacity: 290,
+                price: 30990,
+                originalPrice: 34990,
+                features: ["Turbo Cool", "Stabilizer Free", "Cool Shower Technology", "3 Star Rating"],
+                imageAlt: "Godrej red double door refrigerator with bold color and spacious freezer"
+            },
+            {
+                id: 5,
+                name: "Haier Bottom Mount 320L",
+                brand: "haier",
+                type: "french",
+                capacity: 320,
+                price: 42990,
+                originalPrice: 47990,
+                features: ["Bottom Freezer", "3D Air Flow", "Moisture Control", "Energy Efficient"],
+                imageAlt: "Haier black french door refrigerator with bottom freezer compartment"
+            },
+            {
+                id: 6,
+                name: "Samsung Side-by-Side 655L",
+                brand: "samsung",
+                type: "side",
+                capacity: 655,
+                price: 99990,
+                originalPrice: 119990,
+                features: ["SpaceMax Technology", "Twin Cooling Plus", "Water Dispenser", "Family Hub"],
+                imageAlt: "Samsung massive side-by-side stainless steel refrigerator with ice maker and water dispenser"
+            },
+            {
+                id: 7,
+                name: "LG InstaView 600L",
+                brand: "lg",
+                type: "french",
+                capacity: 600,
+                price: 89990,
+                originalPrice: 99990,
+                features: ["InstaView Door",
+<!-- partial -->
+  
+</body>
+</html>
